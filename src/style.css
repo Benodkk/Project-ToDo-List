@@ -1,0 +1,13 @@
+.task {
+    display: flex;
+    gap:50px
+}
+.content {
+    display: flex;
+    width: auto;
+}
+.groups, .tasks {
+    display: flex;
+    flex-direction: column;
+    width: 600px
+}
