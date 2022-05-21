@@ -1,7 +1,36 @@
+/* header style */
+
+.header{
+    display: flex;
+    flex-direction: column;
+    background-color: #CBD5E1;
+}
+
+.btnPlace{
+    display: flex;
+    justify-content: space-around;
+    padding:20px
+}
+
+.formPlace{
+    display: Flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.newTaskForm{
+    flex-direction: column;
+    gap:10px;
+}
+
+
 .task {
     display: flex;
     gap:50px
 }
+
+/* content style */
+
 .content {
     display: flex;
     width: auto;
@@ -11,6 +40,10 @@
     flex-direction: column;
     width: 600px
 }
-.newGroup {
-    color:blue
+
+.newGroup{
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding: 5px;
 }

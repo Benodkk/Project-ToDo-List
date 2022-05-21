@@ -1,6 +1,3 @@
-import {myGroups,myTasks}  from './header.js'
-
-
 const content=document.querySelector('.content')
 
 let contentSpread = (function() {
@@ -17,13 +14,5 @@ let contentSpread = (function() {
         tasks
     }
 })()
-
-
-
-
-
-
-
-
 
 export default contentSpread
