@@ -11,6 +11,8 @@ let selectedGroup='';
 
 // making newGroup button works
 
+// from for the group name
+
 let whatNewGroupName = (function (){
     let form = document.createElement("form");
     headerSpread.formPlace.appendChild(form)
@@ -33,6 +35,8 @@ let whatNewGroupName = (function (){
     }
 })()
 
+// pop out the form
+
 createButtons.newGroup.addEventListener('click', () => {
     if (newGroupBtnActive==0){
         whatNewGroupName.form.style.display = 'block';
@@ -46,7 +50,6 @@ createButtons.newGroup.addEventListener('click', () => {
 
 function addNewGroup(){
     contentSpread.groups.textContent=''
-
     if (whatNewGroupName.form.elements['groupName'].value !== ''){
         myGroups.push(whatNewGroupName.form.elements['groupName'].value)
     }
@@ -60,14 +63,24 @@ function addNewGroup(){
         oneGroup.appendChild(newGroup)
         newGroup.classList.add(`newGroup`)
         newGroup.textContent=myGroups[i];
-        
-        newGroup.addEventListener('click',()=>{
+
+        oneGroup.addEventListener('click',()=>{
+            let removeColor =''
+            removeColor = Array.from(document.querySelectorAll('.oneGroup'))
+            console.log(removeColor)
+            for (let i=0; i<removeColor.length; i++){
+                removeColor[i].style.backgroundColor=''
+            }
+
             for (let i=0; i<myGroups.length; i++){
                 if (myGroups[i]==newGroup.textContent){
+                    oneGroup.remove
                     selectedGroup=newGroup.textContent;
                     segregate();
+                    oneGroup.style.backgroundColor='#FEF08A'
                 }
             }
+
         })
 
         let delateGroup = document.createElement('button')
@@ -87,14 +100,12 @@ function addNewGroup(){
                 }
             }
             contentSpread.tasks.textContent='';
+            toTheStorage();
         })   
     }
     whatNewGroupName.form.style.display = 'none'
     newGroupBtnActive=0
     whatNewGroupName.groupName.value=''
-
-    console.log(myGroups)
-    console.log(myTasks)
 };
 
 let newGroupBtnActive=0;
@@ -104,9 +115,13 @@ whatNewGroupName.s.addEventListener('click', () => {
     event.preventDefault()
     addNewGroup()
     segregate()
+    contentSpread.tasks.textContent=''
+    toTheStorage();
 })
 
 // making newTask button works
+
+// form for the task
 
 let whatNewTaskName = (function (){
     let form = document.createElement("form");
@@ -127,10 +142,18 @@ let whatNewTaskName = (function (){
     taskNote.setAttribute("cols", "30")
     form.appendChild(taskNote);
 
+    let itsDeadline = document.createElement('div')
+    itsDeadline.textContent='Deadline:'
+    form.appendChild(itsDeadline)
+
     let deadline = document.createElement("input");
     deadline.setAttribute("type", "date");
     deadline.setAttribute("name", "deadline");
     form.appendChild(deadline);
+
+    let itsPriority = document.createElement('div')
+    itsPriority.textContent='Priority:'
+    form.appendChild(itsPriority)
 
     let priority = document.createElement("select");
     priority.setAttribute("name", "priority");
@@ -170,6 +193,8 @@ let whatNewTaskName = (function (){
     }
 })()
 
+// pop out the form
+
 createButtons.newTask.addEventListener('click', () => {
     if (newTaskBtnActive==0){
         whatNewTaskName.form.style.display = 'flex';
@@ -187,13 +212,16 @@ function addNewTask(name){
     myTasks.push(whatNewTaskName.form.elements['taskNote'].value)
     myTasks.push(whatNewTaskName.form.elements['deadline'].value)
     myTasks.push(whatNewTaskName.priority.options[whatNewTaskName.priority.selectedIndex].value)
+    whatNewTaskName.form.style.display = 'none'
+    newTaskBtnActive=0;
+
+    whatNewTaskName.taskName.value=''
 }
 
 let newTaskBtnActive=0;
 whatNewTaskName.form.style.display = 'none';
 
 whatNewTaskName.s.addEventListener('click', () => {
-    console.log(myTasks)
     event.preventDefault()
     addNewTask(selectedGroup)
     segregate()
@@ -213,23 +241,47 @@ function segregate(){
 
             let oneTitle = document.createElement('div');
             oneTask.appendChild(oneTitle);
-            oneTitle.classList.add('oneTitle')
-            oneTitle.textContent=myTasks[i+1]
+            oneTitle.classList.add('one')
+            let oneTitleTag = document.createElement('div')
+            oneTitle.appendChild(oneTitleTag)
+            oneTitleTag.textContent='Task:'
+            oneTitleTag.classList.add('oneTag')
+            let oneTitleContent = document.createElement('div');
+            oneTitle.appendChild(oneTitleContent)
+            oneTitleContent.textContent=myTasks[i+1]
 
             let oneNote = document.createElement('div');
             oneTask.appendChild(oneNote);
-            oneNote.classList.add('oneNote')
-            oneNote.textContent=myTasks[i+2]
+            oneNote.classList.add('one')
+            let oneNoteTag = document.createElement('div')
+            oneNote.appendChild(oneNoteTag)
+            oneNoteTag.textContent='Description:'
+            oneNoteTag.classList.add('oneTag')
+            let oneNoteContent = document.createElement('div');
+            oneNote.appendChild(oneNoteContent)
+            oneNoteContent.textContent=myTasks[i+2]
 
             let oneDeadline = document.createElement('div');
             oneTask.appendChild(oneDeadline);
-            oneDeadline.classList.add('oneDeadline')
-            oneDeadline.textContent=myTasks[i+3]
+            oneDeadline.classList.add('one')
+            let oneDeadlineTag = document.createElement('div')
+            oneDeadline.appendChild(oneDeadlineTag)
+            oneDeadlineTag.textContent='Deadline:'
+            oneDeadlineTag.classList.add('oneTag')
+            let oneDeadlineContent = document.createElement('div');
+            oneDeadline.appendChild(oneDeadlineContent)
+            oneDeadlineContent.textContent=myTasks[i+3]
 
             let onePriority = document.createElement('div');
             oneTask.appendChild(onePriority);
-            onePriority.classList.add('onePriority')
-            onePriority.textContent=myTasks[i+4]
+            onePriority.classList.add('one')
+            let onePriorityTag = document.createElement('div')
+            onePriority.appendChild(onePriorityTag)
+            onePriorityTag.textContent='Priority:'
+            onePriorityTag.classList.add('oneTag')
+            let onePriorityContent = document.createElement('div');
+            onePriority.appendChild(onePriorityContent)
+            onePriorityContent.textContent=myTasks[i+4]
 
             let delateTask = document.createElement('button')
             delateTask.textContent='DELETE'
@@ -352,5 +404,19 @@ function segregate(){
             })
         }
     }
+    toTheStorage()
 }
 
+function toTheStorage(){
+    window.localStorage.setItem('grp',JSON.stringify(myGroups))
+    window.localStorage.setItem('tsk',JSON.stringify(myTasks))
+}
+
+function fromTheStorage(){
+    myGroups = JSON.parse(window.localStorage.getItem('grp'))
+    myTasks = JSON.parse(window.localStorage.getItem('tsk'))
+    addNewGroup()
+    segregate()
+}
+
+fromTheStorage()

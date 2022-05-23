@@ -1,9 +1,15 @@
+body{
+    margin:0px;
+}
+
 /* header style */
 
 .header{
     display: flex;
     flex-direction: column;
-    background-color: #CBD5E1;
+    background-color: #7DD3FC;
+    border-bottom: 1px solid black;
+
 }
 
 .btnPlace{
@@ -33,17 +39,46 @@
 
 .content {
     display: flex;
+    justify-content: space-around;
     width: auto;
+    flex: auto;
 }
 .groups, .tasks {
     display: flex;
     flex-direction: column;
-    width: 600px
+    flex: 1;
+}
+
+
+/* groups */
+
+.groups{
+    border-right: 4px solid black;
+}
+
+.oneGroup{
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    padding: 5px;
+    border-bottom: solid BLACK 1px;
+}
+.oneGroup:hover{
+    background-color: #FDE047;
 }
 
 .newGroup{
     display: flex;
     align-items: center;
-    height: 40px;
-    padding: 5px;
+
+}
+
+/* tasks */
+
+.oneTag{
+    font-weight: 900;
+}
+
+.one{
+    display: flex;
 }
