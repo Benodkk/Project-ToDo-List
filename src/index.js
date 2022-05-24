@@ -92,7 +92,6 @@ function addNewGroup(){
         
         delateGroup.addEventListener('click', () => {
             choosenGroup=0
-            console.log(choosenGroup)
             let whatToDelate = myGroups[i]
             myGroups.splice(i, 1)
             addNewGroup()
@@ -110,7 +109,6 @@ function addNewGroup(){
     whatNewGroupName.form.style.display = 'none'
     newGroupBtnActive=0
     whatNewGroupName.groupName.value=''
-    console.log(choosenGroup)
 };
 
 let newGroupBtnActive=0;
@@ -202,7 +200,6 @@ let whatNewTaskName = (function (){
 
 // pop out the form
 createButtons.newTask.addEventListener('click', () => {
-    console.log(choosenGroup)
     if (choosenGroup==0){
         alert("Please, choose the group!")
     }
