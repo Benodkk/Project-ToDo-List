@@ -11,7 +11,7 @@ let selectedGroup='';
 
 // making newGroup button works
 
-// from for the group name
+// form for the group name
 
 let whatNewGroupName = (function (){
     let form = document.createElement("form");
@@ -25,7 +25,8 @@ let whatNewGroupName = (function (){
 
     let s = document.createElement("input");
     s.setAttribute("type", "submit");
-    s.setAttribute("value", "Submit");
+    s.setAttribute("value", "SUBMIT");
+    s.classList.add('submitBtn')
     form.appendChild(s); 
 
     return{
@@ -47,6 +48,7 @@ createButtons.newGroup.addEventListener('click', () => {
         newGroupBtnActive=0;
       }
 })
+let choosenGroup=0;
 
 function addNewGroup(){
     contentSpread.groups.textContent=''
@@ -67,7 +69,6 @@ function addNewGroup(){
         oneGroup.addEventListener('click',()=>{
             let removeColor =''
             removeColor = Array.from(document.querySelectorAll('.oneGroup'))
-            console.log(removeColor)
             for (let i=0; i<removeColor.length; i++){
                 removeColor[i].style.backgroundColor=''
             }
@@ -78,6 +79,7 @@ function addNewGroup(){
                     selectedGroup=newGroup.textContent;
                     segregate();
                     oneGroup.style.backgroundColor='#FEF08A'
+                    choosenGroup=1;
                 }
             }
 
@@ -89,6 +91,8 @@ function addNewGroup(){
         delateGroup.classList.add('delateGroup')
         
         delateGroup.addEventListener('click', () => {
+            choosenGroup=0
+            console.log(choosenGroup)
             let whatToDelate = myGroups[i]
             myGroups.splice(i, 1)
             addNewGroup()
@@ -106,12 +110,14 @@ function addNewGroup(){
     whatNewGroupName.form.style.display = 'none'
     newGroupBtnActive=0
     whatNewGroupName.groupName.value=''
+    console.log(choosenGroup)
 };
 
 let newGroupBtnActive=0;
 whatNewGroupName.form.style.display = 'none'
 
 whatNewGroupName.s.addEventListener('click', () => {
+    choosenGroup=0;
     event.preventDefault()
     addNewGroup()
     segregate()
@@ -182,7 +188,8 @@ let whatNewTaskName = (function (){
 
     let s = document.createElement("input");
     s.setAttribute("type", "submit");
-    s.setAttribute("value", "Submit");
+    s.setAttribute("value", "SUBMIT");
+    s.classList.add('submitBtn')
     form.appendChild(s); 
 
     return{
@@ -194,16 +201,21 @@ let whatNewTaskName = (function (){
 })()
 
 // pop out the form
-
 createButtons.newTask.addEventListener('click', () => {
-    if (newTaskBtnActive==0){
-        whatNewTaskName.form.style.display = 'flex';
-        newTaskBtnActive=1;
-      }
-      else if (newTaskBtnActive==1){
-        whatNewTaskName.form.style.display = 'none'
-        newTaskBtnActive=0;
-      }
+    console.log(choosenGroup)
+    if (choosenGroup==0){
+        alert("Please, choose the group!")
+    }
+    
+    if (choosenGroup==1){
+        if (newTaskBtnActive==0){
+            whatNewTaskName.form.style.display = 'flex';
+            newTaskBtnActive=1;
+        }
+        else if (newTaskBtnActive==1){
+            whatNewTaskName.form.style.display = 'none'
+            newTaskBtnActive=0;
+        }}
 })
 
 function addNewTask(name){
@@ -244,7 +256,7 @@ function segregate(){
             oneTitle.classList.add('one')
             let oneTitleTag = document.createElement('div')
             oneTitle.appendChild(oneTitleTag)
-            oneTitleTag.textContent='Task:'
+            oneTitleTag.textContent='Task: '
             oneTitleTag.classList.add('oneTag')
             let oneTitleContent = document.createElement('div');
             oneTitle.appendChild(oneTitleContent)
@@ -255,7 +267,7 @@ function segregate(){
             oneNote.classList.add('one')
             let oneNoteTag = document.createElement('div')
             oneNote.appendChild(oneNoteTag)
-            oneNoteTag.textContent='Description:'
+            oneNoteTag.textContent='Description: '
             oneNoteTag.classList.add('oneTag')
             let oneNoteContent = document.createElement('div');
             oneNote.appendChild(oneNoteContent)
@@ -266,7 +278,7 @@ function segregate(){
             oneDeadline.classList.add('one')
             let oneDeadlineTag = document.createElement('div')
             oneDeadline.appendChild(oneDeadlineTag)
-            oneDeadlineTag.textContent='Deadline:'
+            oneDeadlineTag.textContent='Deadline: '
             oneDeadlineTag.classList.add('oneTag')
             let oneDeadlineContent = document.createElement('div');
             oneDeadline.appendChild(oneDeadlineContent)
@@ -277,16 +289,20 @@ function segregate(){
             onePriority.classList.add('one')
             let onePriorityTag = document.createElement('div')
             onePriority.appendChild(onePriorityTag)
-            onePriorityTag.textContent='Priority:'
+            onePriorityTag.textContent='Priority: '
             onePriorityTag.classList.add('oneTag')
             let onePriorityContent = document.createElement('div');
             onePriority.appendChild(onePriorityContent)
             onePriorityContent.textContent=myTasks[i+4]
 
+            let taskButtons = document.createElement('div')
+            taskButtons.classList.add('taskButtons')
+            oneTask.appendChild(taskButtons)
+
             let delateTask = document.createElement('button')
             delateTask.textContent='DELETE'
             delateTask.classList.add('delateTask')
-            oneTask.appendChild(delateTask)
+            taskButtons.appendChild(delateTask)
 
             delateTask.addEventListener('click', () => {
                 myTasks.splice(i, 5)
@@ -298,7 +314,7 @@ function segregate(){
             let editTaskBtn = document.createElement('button')
             editTaskBtn.textContent='EDIT'
             editTaskBtn.classList.add('editTaskBtn')
-            oneTask.appendChild(editTaskBtn)
+            taskButtons.appendChild(editTaskBtn)
             
             function editThatTask(name){
                 myTasks.splice(i,1,name)
@@ -373,7 +389,8 @@ function segregate(){
             
                 let es = document.createElement("input");
                 es.setAttribute("type", "submit");
-                es.setAttribute("value", "Submit");
+                es.setAttribute("value", "SUBMIT");
+                es.classList.add('submitBtn')
                 eform.appendChild(es); 
                 
                 return{

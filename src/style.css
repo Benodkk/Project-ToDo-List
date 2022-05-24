@@ -1,5 +1,6 @@
 body{
     margin:0px;
+    font-family: Helvetica,Arial,sans-serif;
 }
 
 /* header style */
@@ -8,7 +9,7 @@ body{
     display: flex;
     flex-direction: column;
     background-color: #7DD3FC;
-    border-bottom: 1px solid black;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 3px;
 
 }
 
@@ -18,6 +19,47 @@ body{
     padding:20px
 }
 
+.newElBtn {
+  appearance: none;
+  background-color: #000000;
+  border: 2px solid #1A1A1A;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Helvetica,Arial,sans-serif,;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  min-height: 60px;
+  min-width: 0;
+  outline: none;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 150px;
+  will-change: transform;
+}
+
+.newElBtn:disabled {
+  pointer-events: none;
+}
+
+.newElBtn:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.newElBtn:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
 .formPlace{
     display: Flex;
     justify-content: space-around;
@@ -38,6 +80,7 @@ body{
 /* content style */
 
 .content {
+    padding-top: 2px;
     display: flex;
     justify-content: space-around;
     width: auto;
@@ -60,17 +103,58 @@ body{
     display: flex;
     justify-content: space-between;
     height: 40px;
-    padding: 5px;
+    padding: 5px 10px;
     border-bottom: solid BLACK 1px;
 }
 .oneGroup:hover{
     background-color: #FDE047;
 }
+.submitBtn{
+    align-self: center;
+    width: max-content;
+}
+.delateGroup, .editTaskBtn, .delateTask, .submitBtn{
+    appearance: none;
+    background-color: #000000;
+    border: 2px solid #1A1A1A;
+    border-radius: 15px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Helvetica,Arial,sans-serif,;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: normal;
+    margin: 2px;
+    outline: none;
+    padding: 6px 10px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 80px;
+    will-change: transform;
+}
+.delateGroup:disabled, .editTaskBtn:disabled, .delateTask:disabled,.submitBtn:disabled {
+    pointer-events: none;
+}
+  
+.delateGroup:hover, .editTaskBtn:hover, .delateTask:hover, .submitBtn:hover{
+    box-shadow: rgba(0, 0, 0, 0.25) 0 4px 8px;
+    transform: translateY(-1px);
+}
+  
+.delateGroup:active, .editTaskBtn:active, .delateTask:active, .submitBtn:active {
+    box-shadow: none;
+    transform: translateY(0);
+}
 
 .newGroup{
     display: flex;
     align-items: center;
-
 }
 
 /* tasks */
@@ -78,7 +162,20 @@ body{
 .oneTag{
     font-weight: 900;
 }
-
 .one{
     display: flex;
+    gap:2px;
+}
+
+.oneTask{
+    display: flex;
+    flex-direction: column;
+    gap:4px;
+    padding:4px;
+    border-bottom: solid BLACK 1px;
+}
+
+.taskButtons{
+    display: flex;
+    gap:10px
 }

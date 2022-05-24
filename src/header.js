@@ -25,12 +25,18 @@ let createButtons = (function (){
     const newGroup = document.createElement('button')
     headerSpread.btnPlace.appendChild(newGroup)
     newGroup.textContent="New Group"
-    newGroup.classList.add('newGroupBtn')
+    newGroup.classList.add('newElBtn')
+
+    const title = document.createElement('h1')
+    headerSpread.btnPlace.appendChild(title)
+    title.textContent="ToDo List"
+    title.classList.add('title')
+ 
 
     const newTask = document.createElement('button')
     headerSpread.btnPlace.appendChild(newTask)
     newTask.textContent="New Task"
-    newTask.classList.add('newTaskBtn')
+    newTask.classList.add('newElBtn')
     
     return{
         newGroup,
